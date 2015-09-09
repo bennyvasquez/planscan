@@ -1,5 +1,5 @@
 #!/bin/bash
-# alert for accounts with non-BCH accounts
+# alert for accounts with non-BCH plans
 
 tmpfile="/tmp/planscan.txt"
 host=`hostname`
@@ -9,6 +9,7 @@ grep -H PLAN /var/cpanel/users/* | egrep -iv "DevClass|All\ The\ Things|Farmstea
 
 if [ -s $tmpfile ]; 
 	then
+# uncomment for testing
 #		cat $tmpfile
 		mail -s "Plan scan $host" status@bch-status.com < $tmpfile
 		/bin/rm -f $tmpfile
